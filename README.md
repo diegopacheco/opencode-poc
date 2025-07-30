@@ -2,6 +2,8 @@
 
 opencode POC: Open Source AI Engineering Agent Open Code
 
+Opencode: https://github.com/sst/opencode
+
 ## Quick Start with Docker
 
 ### Prerequisites
