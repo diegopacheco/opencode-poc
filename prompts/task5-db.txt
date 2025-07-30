@@ -4,3 +4,5 @@ Each source code folder should have they own docker. /fontend/Dockerfile /backen
 mysql should have a data folder mapped to a local dir db/mysql_data/ which also should be added to .gitignore. this when when the containers goes up and down we dont loose data.
 provide start.sh script to boot the full stack update README instructions
 also make sure to only do the PR when it's working 100%
+
+when you done open a PR using gh and use this prompt as pasrt of the message.
