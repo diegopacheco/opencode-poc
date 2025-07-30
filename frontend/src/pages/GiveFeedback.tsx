@@ -6,10 +6,35 @@ const GiveFeedback: React.FC = () => {
   const [targetType, setTargetType] = useState<'team' | 'member'>('member');
   const [targetId, setTargetId] = useState('');
   const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateFeedback = (content: string): string => {
+    if (!content.trim()) return 'Feedback content is required';
+    if (content.trim().length < 5) return 'Feedback must be at least 5 characters';
+    if (content.trim().length > 1000) return 'Feedback must be less than 1000 characters';
+    return '';
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (targetId && content.trim()) {
+    setError('');
+    setSuccess('');
+
+    if (!targetId) {
+      setError('Please select a team or member');
+      return;
+    }
+
+    const feedbackError = validateFeedback(content);
+    if (feedbackError) {
+      setError(feedbackError);
+      return;
+    }
+
+    setLoading(true);
+    try {
       const target = targetType === 'team' 
         ? teams.find(t => t.id === targetId)
         : members.find(m => m.id === targetId);
@@ -23,7 +48,23 @@ const GiveFeedback: React.FC = () => {
         });
         setContent('');
         setTargetId('');
+        setSuccess('Feedback submitted successfully!');
+      } else {
+        setError('Selected target not found');
       }
+    } catch {
+      setError('Failed to submit feedback. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setContent(value);
+    if (error) {
+      const feedbackError = validateFeedback(value);
+      if (!feedbackError) setError('');
     }
   };
 
@@ -34,6 +75,9 @@ const GiveFeedback: React.FC = () => {
       <h1>Give Feedback</h1>
       
       <form onSubmit={handleSubmit} className="form">
+        {error && <div className="error-message">{error}</div>}
+        {success && <div className="success-message">{success}</div>}
+        
         <div className="form-group">
           <label>Feedback Target:</label>
           <div className="radio-group">
@@ -46,7 +90,9 @@ const GiveFeedback: React.FC = () => {
                 onChange={(e) => {
                   setTargetType(e.target.value as 'member');
                   setTargetId('');
+                  setError('');
                 }}
+                disabled={loading}
               />
               Team Member
             </label>
@@ -59,7 +105,9 @@ const GiveFeedback: React.FC = () => {
                 onChange={(e) => {
                   setTargetType(e.target.value as 'team');
                   setTargetId('');
+                  setError('');
                 }}
+                disabled={loading}
               />
               Team
             </label>
@@ -76,6 +124,7 @@ const GiveFeedback: React.FC = () => {
             onChange={(e) => setTargetId(e.target.value)}
             required
             className="form-input"
+            disabled={loading}
           >
             <option value="">
               Choose a {targetType === 'team' ? 'team' : 'member'}...
@@ -94,16 +143,21 @@ const GiveFeedback: React.FC = () => {
           <textarea
             id="feedback"
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={handleContentChange}
             required
             rows={5}
             className="form-textarea"
             placeholder="Enter your feedback here..."
+            disabled={loading}
+            maxLength={1000}
           />
+          <div className="character-count">
+            {content.length}/1000 characters
+          </div>
         </div>
         
-        <button type="submit" className="btn btn-primary">
-          Submit Feedback
+        <button type="submit" className="btn btn-primary" disabled={loading}>
+          {loading ? 'Submitting...' : 'Submit Feedback'}
         </button>
       </form>
       
