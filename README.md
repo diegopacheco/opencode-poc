@@ -8,6 +8,8 @@ PROS
  * Very Fast
  * Easy to Install
  * Use Claude Sonnet v4 or whatever API or model you have (supports bedrock, openai, anthropic, etc.)
+ * It used latest Go version 1.24
+ * DID NOT install anything uncessary, used the versions I had which is great!
 
 CONS
  * in the end of the task 4 it forget to open the PR I had to remember it.
