@@ -103,6 +103,7 @@ PROS
 
 CONS
  * in the end of the task 4 it forget to open the PR I had to remember it.
+ * There was some bugs, took me 2h to get this done.
 
 ### Opencode in Action
 
