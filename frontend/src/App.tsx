@@ -4,9 +4,10 @@ import AddTeamMember from './pages/AddTeamMember';
 import CreateTeam from './pages/CreateTeam';
 import AssignToTeam from './pages/AssignToTeam';
 import GiveFeedback from './pages/GiveFeedback';
+import ListFeedback from './pages/ListFeedback';
 import './App.css';
 
-type Page = 'add-member' | 'create-team' | 'assign-team' | 'give-feedback';
+type Page = 'add-member' | 'create-team' | 'assign-team' | 'give-feedback' | 'list-feedback';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('add-member');
@@ -21,6 +22,8 @@ function App() {
         return <AssignToTeam />;
       case 'give-feedback':
         return <GiveFeedback />;
+      case 'list-feedback':
+        return <ListFeedback />;
       default:
         return <AddTeamMember />;
     }
@@ -55,6 +58,12 @@ function App() {
               onClick={() => setCurrentPage('give-feedback')}
             >
               Give Feedback
+            </button>
+            <button
+              className={`nav-button ${currentPage === 'list-feedback' ? 'active' : ''}`}
+              onClick={() => setCurrentPage('list-feedback')}
+            >
+              List Feedback
             </button>
           </div>
         </nav>
