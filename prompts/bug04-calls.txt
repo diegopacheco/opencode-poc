@@ -1,0 +1,8 @@
+Bug 04: I think we have a major bug in all pages.
+
+* Make sure all pages are calling the backend properly, they are calling the backend to load data. Make sure they are calling the backend to create data.
+* Revisit all pages, I dont think frontend is calling backend to create data or load data.
+* Review backend code and make sure we are calling the right endpoints.
+* Check for any console errors or network issues in the browser's developer tools.
+* Ensure that the API endpoints are correctly defined and accessible.
+* Verify that the frontend is correctly handling the responses from the backend.
