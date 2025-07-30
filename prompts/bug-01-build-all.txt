@@ -1,0 +1,39 @@
+Bug 01: Build All Script is not working fix and do a PR
+
+❯ ./build-all.sh
+🏗️  Building Coaching Application...
+====================================
+📁 Building Backend...
+Building coaching backend...
+Build successful! Binary created at bin/coaching-backend
+📁 Building Frontend...
+Installing dependencies...
+bun install v1.2.19 (aad3abea)
+
+Checked 280 installs across 325 packages (no changes) [20.00ms]
+Building frontend...
+$ tsc -b && vite build
+src/pages/ListFeedback.tsx:2:10 - error TS2305: Module '"../context"' has no exported member 'useAppContext'.
+
+2 import { useAppContext } from '../context';
+           ~~~~~~~~~~~~~
+
+src/pages/ListFeedback.tsx:3:10 - error TS1484: 'Feedback' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+
+3 import { Feedback, Team, TeamMember } from '../types';
+           ~~~~~~~~
+
+src/pages/ListFeedback.tsx:3:20 - error TS1484: 'Team' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+
+3 import { Feedback, Team, TeamMember } from '../types';
+                     ~~~~
+
+src/pages/ListFeedback.tsx:3:26 - error TS1484: 'TeamMember' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+
+3 import { Feedback, Team, TeamMember } from '../types';
+                           ~~~~~~~~~~
+
+
+Found 4 errors.
+
+❌ Frontend build failed!
