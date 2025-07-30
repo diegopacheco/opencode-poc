@@ -22,14 +22,25 @@ const ListFeedback = () => {
   const fetchFeedbacks = async () => {
     try {
       setLoading(true);
+      setError(null);
       const response = await fetch('http://localhost:8080/api/v1/feedbacks');
       if (!response.ok) {
-        throw new Error('Failed to fetch feedbacks');
+        throw new Error(`Failed to fetch feedbacks: ${response.status}`);
       }
       const data = await response.json();
-      setFeedbacks(data || []);
+      setFeedbacks(Array.isArray(data) ? data : []);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      console.error('Error fetching feedbacks:', err);
+      if (err instanceof Error) {
+        if (err.message.includes('fetch')) {
+          setError('Cannot connect to the backend server. Please make sure the backend is running.');
+        } else {
+          setError(err.message);
+        }
+      } else {
+        setError('An unexpected error occurred');
+      }
+      setFeedbacks([]);
     } finally {
       setLoading(false);
     }

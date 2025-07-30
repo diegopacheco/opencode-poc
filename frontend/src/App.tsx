@@ -33,7 +33,10 @@ function App() {
     <AppProvider>
       <div className="app">
         <nav className="navbar">
-          <h1 className="app-title">Coaching App</h1>
+          <div className="nav-brand">
+            <img src="/logo-app.png" alt="Coaching App Logo" className="app-logo" />
+            <h1 className="app-title">Coaching App</h1>
+          </div>
           <div className="nav-links">
             <button
               className={`nav-button ${currentPage === 'add-member' ? 'active' : ''}`}
