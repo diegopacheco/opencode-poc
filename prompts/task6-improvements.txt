@@ -7,3 +7,5 @@ add a build-all.sh helper script for building the backend, frontend and Docker i
 show logo image at the top of Header use: logo-app.png
 improve frontend experince: for all pages, when some record is saved like when we give feedback or when we create a team or when we add a member or when we asign a member to a team I would like to see a TOST on the UI(not an alert) for 3s saying "sucess".
 make sure frotnend is fetch members, teams, and feedbacks from the API on startup
+
+when you done open a PR using gh and use this prompt as pasrt of the message.

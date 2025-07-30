@@ -1,3 +1,7 @@
 Task 7: Make sure you have a stop.sh script.
 
 Make sure there is a page the list all feedback per team or per member.
+
+when you done open a PR using gh and use this prompt as pasrt of the message.
+
+when you done open a PR using gh and use this prompt as pasrt of the message.

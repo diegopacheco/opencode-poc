@@ -17,3 +17,5 @@ Do not use comments; make the code as simple as possible.
 make a folder called backend, add all go code there. also make sure you have a script called build.sh to build the backend and run.sh to run the backend app.
 
 bckend code`must be in the folder /backend.
+
+when you done open a PR using gh and use this prompt as pasrt of the message.

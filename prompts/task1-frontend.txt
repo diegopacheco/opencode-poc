@@ -16,3 +16,5 @@ Do not call the backend, make React components, and reuse as much as possible.
 Do not use comments; make the code as simple as possible.
 
 the frontend code must be in a frontend/ folder
+
+when you done open a PR using gh and use this prompt as pasrt of the message.
