@@ -29,14 +29,23 @@ const ListFeedback = () => {
       }
       const data = await response.json();
       
-      // Validate and clean the data
+      // Transform backend data to frontend format
       const validFeedbacks = Array.isArray(data) 
-        ? data.filter(item => 
-            item && 
-            typeof item === 'object' && 
-            item.id &&
-            typeof item.targetType === 'string'
-          )
+        ? data
+            .filter(item => 
+              item && 
+              typeof item === 'object' && 
+              item.id &&
+              typeof item.target_type === 'string'
+            )
+            .map(item => ({
+              id: item.id,
+              content: item.content,
+              targetType: item.target_type,
+              targetId: item.target_id,
+              targetName: item.target_name,
+              createdAt: new Date(item.created_at)
+            }))
         : [];
       
       setFeedbacks(validFeedbacks);
@@ -84,8 +93,11 @@ const ListFeedback = () => {
     return [];
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleString();
+  const formatDate = (date: Date | string) => {
+    if (date instanceof Date) {
+      return date.toLocaleString();
+    }
+    return new Date(date).toLocaleString();
   };
 
   if (loading) {
@@ -170,7 +182,7 @@ const ListFeedback = () => {
                 </span>
                 <span className="feedback-target">{feedback.targetName || 'N/A'}</span>
                 <span className="feedback-date">
-                  {formatDate(feedback.createdAt?.toString() || new Date().toISOString())}
+                  {formatDate(feedback.createdAt)}
                 </span>
               </div>
               <div className="feedback-content">
