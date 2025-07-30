@@ -4,6 +4,24 @@ opencode POC: Open Source AI Engineering Agent Open Code
 
 Opencode: https://github.com/sst/opencode
 
+## Results
+
+Add Teams <br/>
+<img src="results/result-create-team.png" width="600" /> <br/>
+
+Add Members <br/>
+<img src="results/result-add-team.png" width="600" /> <br/>
+
+Assign <br/>
+<img src="results/result-assign-to-team.png" width="600" /> <br/>
+
+Give Feedback <br/>
+<img src="results/result-give-feedback.png" width="600" /> <br/>
+
+List Feedbacks <br/>
+<img src="results/result-list-feedback.png" width="600" /> <br/>
+
+
 ## Quick Start with Docker
 
 ### Prerequisites
