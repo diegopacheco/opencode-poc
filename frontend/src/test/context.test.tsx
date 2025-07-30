@@ -3,7 +3,6 @@ import { userEvent } from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest'
 import { AppProvider } from '../context'
 import { useAppContext } from '../appContext'
-import type { TeamMember, Team, Feedback } from '../types'
 
 const TestComponent = () => {
   const { 

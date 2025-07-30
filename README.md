@@ -2,6 +2,76 @@
 
 opencode POC: Open Source AI Engineering Agent Open Code
 
+## Quick Start with Docker
+
+### Prerequisites
+- Docker and Docker Compose installed
+- Ports 3000, 8080, and 3306 available
+
+### Start the Full Stack
+```bash
+# Make the start script executable and run it
+chmod +x start.sh
+./start.sh
+```
+
+This will start:
+- **Frontend**: http://localhost:3000 (React/TypeScript/Vite)
+- **Backend API**: http://localhost:8080 (Go/Gin/GORM)
+- **Database**: MySQL 9 on port 3306
+
+### Manual Docker Commands
+```bash
+# Build and start all services
+docker-compose up -d --build
+
+# Check service status
+docker-compose ps
+
+# View logs
+docker-compose logs -f
+
+# Stop all services
+docker-compose down
+
+# Clean up (remove volumes)
+docker-compose down -v
+```
+
+### API Endpoints
+- `GET /health` - Health check
+- `GET /api/v1/members` - List team members
+- `POST /api/v1/members` - Create team member
+- `GET /api/v1/teams` - List teams
+- `POST /api/v1/teams` - Create team
+- `GET /api/v1/feedbacks` - List feedback
+- `POST /api/v1/feedbacks` - Create feedback
+
+### Database
+- **Host**: localhost:3306
+- **Database**: coaching_app
+- **User**: coaching_user
+- **Password**: coaching_pass
+- **Data**: Persisted in `db/mysql_data/` (gitignored)
+
+### Development
+
+#### Backend (Go)
+```bash
+cd backend
+go run main.go
+```
+
+#### Frontend (React/TypeScript)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+#### Database Schema
+The database schema is automatically created when MySQL starts using `db/schema.sql`.
+
 ## Trade-offs Analysis | Opencode experiences
 
 PROS

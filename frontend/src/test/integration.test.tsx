@@ -91,4 +91,4 @@ describe('Integration Tests - Basic Workflows', () => {
     await user.click(submitBtn)
     expect(screen.getByLabelText('Team Name:')).toBeInvalid()
   })
-}
+})
