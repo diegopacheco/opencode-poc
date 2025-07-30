@@ -10,6 +10,7 @@ PROS
  * Use Claude Sonnet v4 or whatever API or model you have (supports bedrock, openai, anthropic, etc.)
 
 CONS
+ * in the end of the task 4 it forget to open the PR I had to remember it.
 
 ### Opencode in Action
 
