@@ -100,10 +100,13 @@ PROS
  * Use Claude Sonnet v4 or whatever API or model you have (supports bedrock, openai, anthropic, etc.)
  * It used latest Go version 1.24
  * DID NOT install anything uncessary, used the versions I had which is great!
+ * Used 5% of my premium requests but cost ZERO since I was using my GH copilot subscription.
+ * Alongside with claude code this is a very good solution and this one is FOSS!
 
 CONS
- * in the end of the task 4 it forget to open the PR I had to remember it.
+ * In the end of the task 4 (and in task 6 again) it forget to open the PR I had to remember it.
  * There was some bugs, took me 2h to get this done.
+ * Original opencode was Go, they are doing this in typescript not as fast the original but still fast but miss Go.
 
 ### Opencode in Action
 
