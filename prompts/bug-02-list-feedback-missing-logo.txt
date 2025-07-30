@@ -1,0 +1,5 @@
+Bug 02: List Feedback page is not opening and not working.
+
+Also the header should have the logo-app.png being displayed.
+
+Make a PR in the end with this prompt and the fix.
