@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:9.0
+    container_name: coaching-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: coaching_app
+      MYSQL_USER: coaching_user
+      MYSQL_PASSWORD: coaching_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - coaching-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+      interval: 10s
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: coaching-backend
+    environment:
+      DB_DSN: "coaching_user:coaching_pass@tcp(mysql:3306)/coaching_app?charset=utf8mb4&parseTime=True&loc=Local"
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - coaching-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: coaching-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - coaching-network
+    restart: unless-stopped
+
+networks:
+  coaching-network:
+    driver: bridge
+
+volumes:
+  mysql_data:

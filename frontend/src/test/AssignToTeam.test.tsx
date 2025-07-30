@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { AppProvider } from '../context'
 import { useAppContext } from '../appContext'
 import AssignToTeam from '../pages/AssignToTeam'
