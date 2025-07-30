@@ -1,0 +1,13 @@
+Bug 03: List feedback still with bugs
+
+Uncaught TypeError: Cannot read properties of undefined (reading 'toUpperCase')
+    at index-JIWCEmEv.js:49:47125
+    at Array.map (<anonymous>)
+    at Kv (index-JIWCEmEv.js:49:46938)
+    at qc (index-JIWCEmEv.js:48:34130)
+    at Ic (index-JIWCEmEv.js:48:62053)
+    at Dr (index-JIWCEmEv.js:48:72556)
+    at ad (index-JIWCEmEv.js:48:106577)
+    at Gm (index-JIWCEmEv.js:48:105642)
+    at Mf (index-JIWCEmEv.js:48:105474)
+    at Fr (index-JIWCEmEv.js:48:102585)
