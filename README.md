@@ -13,11 +13,11 @@ CONS
 
 ### Opencode in Action
 
-Opencode in Action 
-<img src="results/opencode-in-action-1.png" width="600" />
+Opencode in Action <br/>
+<img src="results/opencode-in-action-1.png" width="600" /><br/>
 
-Opencode in Action 
-<img src="results/opencode-in-action-2.png" width="600" />
+Opencode in Action <br/> 
+<img src="results/opencode-in-action-2.png" width="600" /><br/>
 
 ### All PRs are available here
 
