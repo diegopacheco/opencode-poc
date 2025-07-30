@@ -64,7 +64,7 @@ const AddTeamMember: React.FC = () => {
 
     setLoading(true);
     try {
-      addMember({
+      await addMember({
         name: name.trim(),
         picture: picture.trim() || '/default-avatar.png',
         email: email.trim(),

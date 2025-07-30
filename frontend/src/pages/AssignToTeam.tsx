@@ -2,30 +2,53 @@ import { useState } from 'react';
 import { useAppContext } from '../appContext';
 
 const AssignToTeam: React.FC = () => {
-  const { members, teams, assignMemberToTeam } = useAppContext();
+  const { members, teams, assignMemberToTeam, loading, error } = useAppContext();
   const [selectedMember, setSelectedMember] = useState('');
   const [selectedTeam, setSelectedTeam] = useState('');
+  const [localLoading, setLocalLoading] = useState(false);
+  const [localError, setLocalError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const availableMembers = members.filter(member => !member.teamId);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedMember && selectedTeam) {
-      assignMemberToTeam(selectedMember, selectedTeam);
+    setLocalError('');
+    setSuccess('');
+    
+    if (!selectedMember || !selectedTeam) {
+      setLocalError('Please select both a member and a team');
+      return;
+    }
+
+    setLocalLoading(true);
+    try {
+      await assignMemberToTeam(selectedMember, selectedTeam);
       setSelectedMember('');
       setSelectedTeam('');
+      setSuccess('Member assigned to team successfully!');
+    } catch {
+      setLocalError('Failed to assign member to team. Please try again.');
+    } finally {
+      setLocalLoading(false);
     }
   };
+
+  const isLoading = loading || localLoading;
+  const displayError = error || localError;
 
   return (
     <div className="page">
       <h1>Assign to Team</h1>
       
-      {availableMembers.length === 0 && (
+      {displayError && <div className="error-message">{displayError}</div>}
+      {success && <div className="success-message">{success}</div>}
+      
+      {availableMembers.length === 0 && !isLoading && (
         <p className="message">No unassigned members available.</p>
       )}
       
-      {teams.length === 0 && (
+      {teams.length === 0 && !isLoading && (
         <p className="message">No teams created yet.</p>
       )}
       
@@ -39,6 +62,7 @@ const AssignToTeam: React.FC = () => {
               onChange={(e) => setSelectedMember(e.target.value)}
               required
               className="form-input"
+              disabled={isLoading}
             >
               <option value="">Choose a member...</option>
               {availableMembers.map(member => (
@@ -57,6 +81,7 @@ const AssignToTeam: React.FC = () => {
               onChange={(e) => setSelectedTeam(e.target.value)}
               required
               className="form-input"
+              disabled={isLoading}
             >
               <option value="">Choose a team...</option>
               {teams.map(team => (
@@ -67,8 +92,8 @@ const AssignToTeam: React.FC = () => {
             </select>
           </div>
           
-          <button type="submit" className="btn btn-primary">
-            Assign to Team
+          <button type="submit" className="btn btn-primary" disabled={isLoading}>
+            {isLoading ? 'Assigning...' : 'Assign to Team'}
           </button>
         </form>
       )}
