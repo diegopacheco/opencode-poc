@@ -105,4 +105,3 @@ https://github.com/diegopacheco/opencode-poc/pulls?q=is%3Apr+is%3Aclosed
 * Gemini-cli POC: https://github.com/diegopacheco/gemini-cli-poc
 * Sketch POC: https://github.com/diegopacheco/sketch-dev-poc
 * Augument Code POC: https://github.com/diegopacheco/augmentcode-poc
-* Opencode POC: https://github.com/diegopacheco/opencode-poc
