@@ -1,0 +1,3 @@
+Bug 06: List Feedbacks is not working as expected.
+
+I see data in http://localhost:8080/api/v1/feedbacks but the pages is not listing the feedbacks.
