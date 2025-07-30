@@ -40,7 +40,7 @@ const GiveFeedback: React.FC = () => {
         : members.find(m => m.id === targetId);
       
       if (target) {
-        addFeedback({
+        await addFeedback({
           content: content.trim(),
           targetType,
           targetId,

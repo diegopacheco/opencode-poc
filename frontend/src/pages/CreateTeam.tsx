@@ -50,7 +50,7 @@ const CreateTeam: React.FC = () => {
 
     setLoading(true);
     try {
-      addTeam({
+      await addTeam({
         name: name.trim(),
         logo: logo.trim() || '/default-team-logo.png',
       });
