@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useAppContext } from '../context';
-import { Feedback, Team, TeamMember } from '../types';
+import { useAppContext } from '../appContext';
+import type { Feedback, Team, TeamMember } from '../types';
 
 const ListFeedback = () => {
   const { teams, members } = useAppContext();
