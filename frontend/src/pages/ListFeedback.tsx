@@ -28,7 +28,18 @@ const ListFeedback = () => {
         throw new Error(`Failed to fetch feedbacks: ${response.status}`);
       }
       const data = await response.json();
-      setFeedbacks(Array.isArray(data) ? data : []);
+      
+      // Validate and clean the data
+      const validFeedbacks = Array.isArray(data) 
+        ? data.filter(item => 
+            item && 
+            typeof item === 'object' && 
+            item.id &&
+            typeof item.targetType === 'string'
+          )
+        : [];
+      
+      setFeedbacks(validFeedbacks);
     } catch (err) {
       console.error('Error fetching feedbacks:', err);
       if (err instanceof Error) {
@@ -47,7 +58,11 @@ const ListFeedback = () => {
   };
 
   const filterFeedbacks = () => {
-    let filtered = feedbacks;
+    let filtered = feedbacks.filter(feedback => 
+      feedback && 
+      feedback.id && 
+      typeof feedback.targetType === 'string'
+    );
 
     if (filterType !== 'all') {
       filtered = filtered.filter(feedback => feedback.targetType === filterType);
@@ -150,16 +165,16 @@ const ListFeedback = () => {
           filteredFeedbacks.map((feedback) => (
             <div key={feedback.id} className="feedback-card">
               <div className="feedback-header">
-                <span className={`feedback-type ${feedback.targetType}`}>
-                  {feedback.targetType.toUpperCase()}
+                <span className={`feedback-type ${feedback.targetType || 'unknown'}`}>
+                  {(feedback.targetType || 'UNKNOWN').toUpperCase()}
                 </span>
-                <span className="feedback-target">{feedback.targetName}</span>
+                <span className="feedback-target">{feedback.targetName || 'N/A'}</span>
                 <span className="feedback-date">
-                  {formatDate(feedback.createdAt.toString())}
+                  {formatDate(feedback.createdAt?.toString() || new Date().toISOString())}
                 </span>
               </div>
               <div className="feedback-content">
-                {feedback.content}
+                {feedback.content || 'No content available'}
               </div>
             </div>
           ))
